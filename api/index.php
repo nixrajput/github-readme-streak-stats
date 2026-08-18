@@ -32,6 +32,9 @@ header("Cache-Control: public, max-age=$cacheSeconds");
 // lambda, which pushed the deployment over Vercel's per-deployment ceiling.
 if (!isset($_REQUEST["user"])) {
     header("Content-Type: text/html; charset=utf-8");
+    // Override the 24h card cache set above. A landing page pinned for a day
+    // means any change to it sticks in every visitor's browser until it expires.
+    header("Cache-Control: public, max-age=300");
     echo <<<'HTML'
 <!doctype html>
 <html lang="en">

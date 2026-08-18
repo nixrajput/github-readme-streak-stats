@@ -874,6 +874,12 @@ function renderOutput(string|array $output, int $responseCode = 200): void
     // Always return HTTP 200 for SVG/PNG so GitHub's image proxy (Camo) displays error cards
     // instead of broken images. The original error code is included in JSON responses.
     http_response_code(200);
+    // The 200 above is deliberate, but it also makes the response eligible for the
+    // 24h card cache set in index.php. A transient GitHub failure would then be
+    // pinned in every viewer's browser for a day, so errors get a short TTL.
+    if ($responseCode >= 400) {
+        header("Cache-Control: public, max-age=300");
+    }
     header("Content-Type: {$response["contentType"]}");
     exit($response["body"]);
 }
