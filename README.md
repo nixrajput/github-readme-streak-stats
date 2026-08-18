@@ -40,12 +40,12 @@ Self-hosted service behind the streak card on [nixrajput's profile README](https
 Runs on our own Vercel deployment and our own GitHub token, so the card does not depend on a
 shared public instance or compete for its rate limit.
 
-**Endpoint:** `https://github-readme-streak-stats-nixlab.vercel.app`
+**Endpoint:** `https://github-readme-streak-stats.nixrajput.com`
 
 ## Usage
 
 ```md
-[![GitHub Streak](https://github-readme-streak-stats-nixlab.vercel.app?user=nixrajput)](https://github.com/nixrajput/github-readme-streak-stats)
+[![GitHub Streak](https://github-readme-streak-stats.nixrajput.com?user=nixrajput)](https://github.com/nixrajput/github-readme-streak-stats)
 ```
 
 Theme-aware embedding, which is what the profile README uses. The `#gh-dark-mode-only`
@@ -53,8 +53,8 @@ fragment is deprecated and no longer switches images, so use `<picture>`:
 
 ```html
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-streak-stats-nixlab.vercel.app?user=nixrajput&theme=dark" />
-  <img src="https://github-readme-streak-stats-nixlab.vercel.app?user=nixrajput&theme=default" alt="GitHub Streak" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-streak-stats.nixrajput.com?user=nixrajput&theme=dark" />
+  <img src="https://github-readme-streak-stats.nixrajput.com?user=nixrajput&theme=default" alt="GitHub Streak" />
 </picture>
 ```
 
@@ -100,7 +100,7 @@ If the `theme` parameter is specified, any color customizations specified will b
 To enable a theme, append `&theme=` followed by the theme name to the end of the source URL:
 
 ```md
-[![GitHub Streak](https://github-readme-streak-stats-nixlab.vercel.app/?user=nixrajput&theme=dark)](https://github.com/nixrajput/github-readme-streak-stats)
+[![GitHub Streak](https://github-readme-streak-stats.nixrajput.com/?user=nixrajput&theme=dark)](https://github.com/nixrajput/github-readme-streak-stats)
 ```
 
 |     Theme      |                            Preview                            |
@@ -147,7 +147,7 @@ When the contribution year is equal to the current year, the characters in brack
 ### Example
 
 ```md
-[![GitHub Streak](https://github-readme-streak-stats-nixlab.vercel.app/?user=nixrajput&currStreakNum=2FD3EB&fire=pink&sideLabels=F00&date_format=[Y.]n.j)](https://github.com/nixrajput/github-readme-streak-stats)
+[![GitHub Streak](https://github-readme-streak-stats.nixrajput.com/?user=nixrajput&currStreakNum=2FD3EB&fire=pink&sideLabels=F00&date_format=[Y.]n.j)](https://github.com/nixrajput/github-readme-streak-stats)
 ```
 
 ## ℹ️ How these stats are calculated
