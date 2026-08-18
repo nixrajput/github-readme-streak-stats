@@ -19,3 +19,8 @@ docker_tag
 # IDE
 .vscode/
 .idea/
+
+# Demo site: three PHP files, each of which becomes its own lambda.
+# The deployment sits at Vercel's per-deployment function ceiling, and the
+# card does not need the demo, so it is excluded rather than the card broken.
+api/demo/
