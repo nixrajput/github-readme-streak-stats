@@ -1,6 +1,6 @@
 name: GitHub Readme Streak Stats Action
 description: Generate a GitHub Readme Streak Stats SVG in GitHub Actions.
-author: DenverCoder1
+author: nixrajput
 inputs:
     options:
         description: Card options as a query string or JSON object.

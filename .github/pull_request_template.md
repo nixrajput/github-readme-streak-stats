@@ -27,7 +27,7 @@ Changes strictly related to documentation can skip this section.
 
 ## Checklist:
 
-- [ ] I have checked to make sure no other [pull requests](https://github.com/DenverCoder1/github-readme-streak-stats/pulls?q=is%3Apr+sort%3Aupdated-desc+) are open for this issue
+- [ ] I have checked to make sure no other [pull requests](https://github.com/nixrajput/github-readme-streak-stats/pulls?q=is%3Apr+sort%3Aupdated-desc+) are open for this issue
 - [ ] The code is properly formatted and is consistent with the existing code style
 - [ ] I have commented my code, particularly in hard-to-understand areas
 - [ ] I have made corresponding changes to the documentation
