@@ -6,9 +6,35 @@
 
 <em>Total contributions, current streak and longest streak, rendered as an SVG card.</em>
 
+<br />
+
+[![Stars](https://img.shields.io/github/stars/nixrajput/github-readme-streak-stats?color=159F7C)][repo]
+[![License: MIT](https://img.shields.io/github/license/nixrajput/github-readme-streak-stats?color=159F7C)][license]
+[![Last commit](https://img.shields.io/github/last-commit/nixrajput/github-readme-streak-stats?label=last%20commit)][repo]
+[![Issues](https://img.shields.io/github/issues/nixrajput/github-readme-streak-stats?label=issues)][issues]
+[![PRs](https://img.shields.io/github/issues-pr/nixrajput/github-readme-streak-stats?label=PRs)][pulls]
+
+<strong>Self-hosted &middot; own PAT &middot; 166 themes &middot; 63 locales &middot; PHP on Vercel</strong><br>
+<sub>Runs on our own Vercel deployment rather than a shared public instance, so the card does not compete for someone else's rate limit. Derived from the upstream <code>vercel</code> branch, which is the one that carries <code>vercel.json</code> and <code>api/</code> - upstream's <code>main</code> does not, and deploying it returns 404.</sub>
+
 </div>
 
 ---
+
+## Contents
+
+- [github-readme-streak-stats](#github-readme-streak-stats)
+  - [Contents](#contents)
+  - [Usage](#usage)
+  - [🔧 Options](#-options)
+  - [ℹ️ How these stats are calculated](#-how-these-stats-are-calculated)
+  - [🛠 Local development](#-local-development)
+  - [🚀 Deployment](#-deployment)
+  - [Contributing](#contributing)
+  - [Contributors](#contributors)
+  - [License](#license)
+  - [Support the project](#support-the-project)
+  - [Connect](#connect)
 
 Self-hosted service behind the streak card on [nixrajput's profile README](https://github.com/nixrajput).
 Runs on our own Vercel deployment and our own GitHub token, so the card does not depend on a
@@ -165,9 +191,64 @@ Deployed to Vercel from this repo's `main` branch. `vercel.json` routes every re
 > card breaking, and it fails as a rendered "Failed to retrieve contributions" SVG rather
 > than an obvious error.
 
-## 📄 Attribution
+## Contributing
 
-Derived from [DenverCoder1/github-readme-streak-stats](https://github.com/DenverCoder1/github-readme-streak-stats)
-by Jonah Lawrence, used under the MIT License. The original copyright notice is retained in
-[LICENSE](./LICENSE). This repository is an independent deployment and is not affiliated with
-or endorsed by the original author.
+Contributions are welcome. Fork, branch, and open a PR. Bugs and ideas go to [Issues][issues]; questions to [Discussions][discussions].
+
+## Contributors
+
+Thanks to everyone who has contributed to github-readme-streak-stats.
+
+<a href="https://github.com/nixrajput/github-readme-streak-stats/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=nixrajput/github-readme-streak-stats" alt="Contributors" />
+</a>
+
+## License
+
+Licensed under the **MIT** license - see [LICENSE](LICENSE).
+
+Derived from [DenverCoder1/github-readme-streak-stats](https://github.com/DenverCoder1/github-readme-streak-stats) by Jonah Lawrence, used under the MIT License. The original
+copyright notice is retained in [LICENSE](LICENSE). This repository is an independent
+deployment and is not affiliated with or endorsed by the original author.
+
+## Support the project
+
+<div align="center">
+
+github-readme-streak-stats is MIT licensed and free to use, always. If it earns a place on your profile, sponsorship is welcome.
+
+<br />
+
+<a href="https://github.com/sponsors/nixrajput">
+  <img src="https://img.shields.io/badge/Sponsor_on_GitHub-EA4AAA?style=for-the-badge&logo=githubsponsors&logoColor=white" alt="GitHub Sponsors" />
+</a>
+<a href="https://ko-fi.com/nixrajput">
+  <img src="https://img.shields.io/badge/Ko--fi-FF5E5B?style=for-the-badge&logo=kofi&logoColor=white" alt="Ko-fi" />
+</a>
+<a href="https://www.buymeacoffee.com/nixrajput">
+  <img src="https://img.shields.io/badge/Buy_Me_a_Coffee-FFDD00?style=for-the-badge&logo=buymeacoffee&logoColor=black" alt="Buy Me a Coffee" />
+</a>
+
+</div>
+
+## Connect
+
+<div align="center">
+
+**Nikhil Rajput**
+
+<a href="https://github.com/nixrajput"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" /></a>
+<a href="https://linkedin.com/in/nixrajput"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
+<a href="https://x.com/nixrajput"><img src="https://img.shields.io/badge/X-000000?style=for-the-badge&logo=x&logoColor=white" alt="X" /></a>
+<a href="https://instagram.com/nixrajput"><img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white" alt="Instagram" /></a>
+<a href="https://telegram.me/nixrajput"><img src="https://img.shields.io/badge/Telegram-26A5E4?style=for-the-badge&logo=telegram&logoColor=white" alt="Telegram" /></a>
+<a href="mailto:nkr.nikhil.nkr@gmail.com"><img src="https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" /></a>
+
+</div>
+
+[repo]: https://github.com/nixrajput/github-readme-streak-stats
+[issues]: https://github.com/nixrajput/github-readme-streak-stats/issues
+[pulls]: https://github.com/nixrajput/github-readme-streak-stats/pulls
+[discussions]: https://github.com/nixrajput/github-readme-streak-stats/discussions
+[contributors]: https://github.com/nixrajput/github-readme-streak-stats/graphs/contributors
+[license]: https://github.com/nixrajput/github-readme-streak-stats/blob/main/LICENSE
