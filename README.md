@@ -185,6 +185,8 @@ Deployed to Vercel from this repo's `main` branch. `vercel.json` routes every re
 | Environment variable | Purpose |
 | :------------------- | :------ |
 | `TOKEN`              | GitHub PAT used for the contributions GraphQL query. No scopes required for public data. |
+| `WHITELIST`          | Comma-separated usernames allowed to use this instance. Unset leaves it open to everyone. |
+| `DISABLE_CACHE`      | Set to `true` to bypass the response cache. Leave unset; disabling it invites rate limits. |
 
 > [!IMPORTANT]
 > Set a long expiry on the PAT. An expired token is the single most common cause of this
