@@ -179,8 +179,10 @@ Run the test suite with `composer test`.
 
 ## 🚀 Deployment
 
-Deployed to Vercel from this repo's `main` branch. `vercel.json` routes every request to
-`api/index.php` on the `vercel-php` runtime.
+Deployed to Vercel from this repo's `main` branch. `vercel.json` routes every request
+to `api/index.php` on the `vercel-php` runtime. The other files under `api/` are libraries
+it includes, not endpoints, so they are routed to the 404 page rather than left reachable
+as empty responses. A sync that adds a library file needs adding to that rule.
 
 | Environment variable | Purpose |
 | :------------------- | :------ |

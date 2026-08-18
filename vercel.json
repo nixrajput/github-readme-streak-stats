@@ -1,5 +1,10 @@
 {
     "routes": [
+        {
+            "src": "/api/(cache|card|colors|generator|stats|themes|translations|whitelist)\\.php",
+            "status": 404,
+            "dest": "/404.html"
+        },
         { "handle": "filesystem" },
         { "src": "/", "dest": "/api/index.php" }
     ],
