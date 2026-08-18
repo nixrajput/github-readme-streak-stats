@@ -30,7 +30,7 @@ jobs:
     name: translation progress
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - uses: php-actions/composer@v6
         with:
@@ -41,7 +41,7 @@ jobs:
         run: php scripts/translation-progress.php
 
       - name: Raise a PR if the table changed
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           commit-message: "docs(readme): update translation progress"
           title: "docs(readme): update translation progress"
