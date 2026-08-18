@@ -2,7 +2,7 @@
 
 To enable a theme, append `&theme=` followed by the theme name to the end of your url.
 
-You can also try out and customize these themes on the [Demo Site](https://streak-stats.demolab.com/demo/)!
+You can also try out and customize these themes on the [Demo Site](https://github-readme-streak-stats-nixlab.vercel.app/demo/)!
 
 Note: Theme names provided are case-insensitive and any use of underscores will be treated the same as hyphens.
 
@@ -177,7 +177,7 @@ Note: Theme names provided are case-insensitive and any use of underscores will 
 
 ### Can't find the theme you like?
 
-You can now customize your stats card with the interactive [Demo Site](https://streak-stats.demolab.com/demo/) or by customizing the [url parameters](/README.md#-options).
+You can now customize your stats card with the interactive [Demo Site](https://github-readme-streak-stats-nixlab.vercel.app/demo/) or by customizing the [url parameters](/README.md#-options).
 
 If you would like to share your theme with others, feel free to open an issue/pull request!
 
