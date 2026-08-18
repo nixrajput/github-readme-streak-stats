@@ -6,19 +6,19 @@ A profile readme appears on your profile page when you create a repository with 
 
 ## How do I include GitHub Readme Streak Stats in my Readme?
 
-Markdown files on GitHub support embedded images using Markdown or HTML. You can customize your Streak Stats image on the [demo site](https://github-readme-streak-stats-nixlab.vercel.app/demo/) and use the image source in either of the following ways:
+Markdown files on GitHub support embedded images using Markdown or HTML. You can customize your Streak Stats image on the [demo site](https://github-readme-streak-stats.nixrajput.com/demo/) and use the image source in either of the following ways:
 
 ### Markdown
 
 ```md
-[![GitHub Streak](https://github-readme-streak-stats-nixlab.vercel.app?user=nixrajput)](https://github.com/nixrajput/github-readme-streak-stats)
+[![GitHub Streak](https://github-readme-streak-stats.nixrajput.com?user=nixrajput)](https://github.com/nixrajput/github-readme-streak-stats)
 ```
 
 ### HTML
 
 <!-- prettier-ignore-start -->
 ```html
-<a href="https://github.com/nixrajput/github-readme-streak-stats"><img src="https://github-readme-streak-stats-nixlab.vercel.app?user=nixrajput"/></a>
+<a href="https://github.com/nixrajput/github-readme-streak-stats"><img src="https://github-readme-streak-stats.nixrajput.com?user=nixrajput"/></a>
 ```
 <!-- prettier-ignore-end -->
 
@@ -57,7 +57,7 @@ To center align images, you must use the HTML syntax and wrap it in an element w
 <!-- prettier-ignore-start -->
 ```html
 <p align="center">
-    <a href="https://github.com/nixrajput/github-readme-streak-stats"><img src="https://github-readme-streak-stats-nixlab.vercel.app?user=nixrajput"/></a>
+    <a href="https://github.com/nixrajput/github-readme-streak-stats"><img src="https://github-readme-streak-stats.nixrajput.com?user=nixrajput"/></a>
 </p>
 ```
 <!-- prettier-ignore-end -->
@@ -69,8 +69,8 @@ You can [specify theme context](https://github.blog/changelog/2022-05-19-specify
 <!-- prettier-ignore-start -->
 ```html
 <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-streak-stats-nixlab.vercel.app?user=nixrajput&theme=dark" />
-    <img src="https://github-readme-streak-stats-nixlab.vercel.app?user=nixrajput&theme=default" />
+    <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-streak-stats.nixrajput.com?user=nixrajput&theme=dark" />
+    <img src="https://github-readme-streak-stats.nixrajput.com?user=nixrajput&theme=default" />
 </picture>
 ```
 <!-- prettier-ignore-end -->

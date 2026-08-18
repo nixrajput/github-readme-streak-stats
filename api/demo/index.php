@@ -91,7 +91,7 @@ function fileModifiedTime(string $filename): int
             <h2>Properties</h2>
             <form class="parameters">
                 <label for="user">Username<span title="required">*</span></label>
-                <input class="param" type="text" id="user" name="user" placeholder="DenverCoder1" pattern="^[A-Za-z\d-]{0,39}[A-Za-z\d]$" title="Up to 40 letters or hyphens but not ending with hyphen" />
+                <input class="param" type="text" id="user" name="user" placeholder="nixrajput" pattern="^[A-Za-z\d-]{0,39}[A-Za-z\d]$" title="Up to 40 letters or hyphens but not ending with hyphen" />
 
                 <label for="theme">Theme</label>
                 <select class="param" id="theme" name="theme">
@@ -277,7 +277,7 @@ function fileModifiedTime(string $filename): int
                 </div>
             </div>
             <div class="bottom">
-                <a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/docs/faq.md" target="_blank" class="underline-hover faq">
+                <a href="https://github.com/nixrajput/github-readme-streak-stats/blob/main/docs/faq.md" target="_blank" class="underline-hover faq">
                     Frequently Asked Questions
                     <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                         <g>

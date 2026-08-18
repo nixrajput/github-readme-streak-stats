@@ -38,7 +38,7 @@ body:
     attributes:
       label: Card URL
       description: The full URL that reproduces the problem.
-      placeholder: 'https://github-readme-streak-stats-nixlab.vercel.app?user=nixrajput&theme=dark'
+      placeholder: 'https://github-readme-streak-stats.nixrajput.com?user=nixrajput&theme=dark'
     validations:
       required: true
 
