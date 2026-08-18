@@ -21,7 +21,7 @@ jobs:
   build-test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - uses: php-actions/composer@v6
         with:
@@ -32,7 +32,7 @@ jobs:
         run: php scripts/translation-progress.php
 
       - name: Commit Changes
-        uses: EndBug/add-and-commit@v9
+        uses: EndBug/add-and-commit@v11
         with:
           author_name: GitHub Actions
           author_email: github-actions[bot]@users.noreply.github.com

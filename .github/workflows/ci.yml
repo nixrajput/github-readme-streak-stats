@@ -21,7 +21,7 @@ jobs:
     name: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       # php-actions/* are kept from the upstream pipeline: they are the setup this
       # test suite is known to pass under, and the intl extension is required.
       - uses: php-actions/composer@v6
