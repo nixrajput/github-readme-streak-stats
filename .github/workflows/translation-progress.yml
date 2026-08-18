@@ -1,4 +1,7 @@
-name: Update Translation Progress
+name: Translation progress
+
+# Regenerates the translation completeness table when a locale changes.
+# Worth keeping: the service ships 63 locales and the table rots silently otherwise.
 
 on:
   workflow_dispatch:
@@ -18,7 +21,7 @@ jobs:
   build-test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v6
 
       - uses: php-actions/composer@v6
         with:
@@ -29,7 +32,7 @@ jobs:
         run: php scripts/translation-progress.php
 
       - name: Commit Changes
-        uses: EndBug/add-and-commit@v7
+        uses: EndBug/add-and-commit@v9
         with:
           author_name: GitHub Actions
           author_email: github-actions[bot]@users.noreply.github.com
