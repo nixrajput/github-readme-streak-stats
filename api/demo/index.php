@@ -22,7 +22,7 @@ function camelToSkewer(string $str): string
         function ($matches) {
             return "-" . strtolower($matches[0]);
         },
-        $str
+        $str,
     );
 }
 
@@ -57,7 +57,6 @@ function fileModifiedTime(string $filename): int
         gtag('config', 'G-48CYVH0XEF');
     </script>
     <title>GitHub Readme Streak Stats Demo</title>
-    <link href="https://css.gg/css?=|moon|sun" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css?v=<?= fileModifiedTime("./css/style.css") ?>">
     <link rel="stylesheet" href="./css/toggle-dark.css?v=<?= fileModifiedTime("./css/toggle-dark.css") ?>">
 
@@ -131,6 +130,12 @@ function fileModifiedTime(string $filename): int
                     <?php endforeach; ?>
                 </select>
 
+                <label for="short-numbers">Short Numbers</label>
+                <select class="param" id="short-numbers" name="short_numbers">
+                    <option>false</option>
+                    <option>true</option>
+                </select>
+
                 <label for="date-format">Date Format</label>
                 <select class="param" id="date-format" name="date_format">
                     <option value="">default</option>
@@ -180,6 +185,9 @@ function fileModifiedTime(string $filename): int
 
                 <label for="card-width">Card Width</label>
                 <input class="param" type="number" id="card-width" name="card_width" placeholder="495" value="495" step="1" min="300" />
+
+                <label for="card-width">Card Height</label>
+                <input class="param" type="number" id="card-width" name="card_height" placeholder="195" value="195" step="1" min="170" />
 
                 <label for="type">Output Type</label>
                 <select class="param" id="type" name="type">
@@ -234,15 +242,39 @@ function fileModifiedTime(string $filename): int
                 <p class="warning">
                     Note: The stats above are just examples and not from your GitHub profile.
                 </p>
-
-                <h2>Markdown</h2>
-                <div class="md">
-                    <code></code>
+                
+                <div>
+                    <h2>Markdown</h2>
+                    <div class="code-container md">
+                        <code></code>
+                    </div>
+                    
+                    <button class="copy-button btn tooltip copy-md" onclick="clipboard.copy(this);" onmouseout="tooltip.reset(this);" disabled>
+                        Copy To Clipboard
+                    </button>
+                </div>
+                
+                <div>
+                    <h2>HTML</h2>
+                    <div class="code-container html">
+                        <code></code>
+                    </div>
+                    
+                    <button class="copy-button btn tooltip copy-html" onclick="clipboard.copy(this);" onmouseout="tooltip.reset(this);" disabled>
+                        Copy To Clipboard
+                    </button>
                 </div>
 
-                <button class="copy-button btn tooltip" onclick="clipboard.copy(this);" onmouseout="tooltip.reset(this);" disabled>
-                    Copy To Clipboard
-                </button>
+                <div>
+                    <h2>JSON</h2>
+                    <div class="code-container json">
+                        <code></code>
+                    </div>
+                    
+                    <button class="copy-button btn tooltip copy-json" onclick="clipboard.copy(this);" onmouseout="tooltip.reset(this);" disabled>
+                        Copy To Clipboard
+                    </button>
+                </div>
             </div>
             <div class="bottom">
                 <a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/docs/faq.md" target="_blank" class="underline-hover faq">
@@ -259,7 +291,13 @@ function fileModifiedTime(string $filename): int
     </div>
 
     <a href="javascript:toggleTheme()" class="darkmode" title="toggle dark mode">
-        <i class="<?php echo $darkmode === "on" ? "gg-sun" : "gg-moon"; ?>"></i>
+         <span id="darkmode-icon">
+            <?php if ($darkmode === "on"): ?>
+                🌞
+            <?php else: ?>
+                🌙
+            <?php endif; ?>
+         </span>
     </a>
 </body>
 

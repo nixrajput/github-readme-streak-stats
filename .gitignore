@@ -3,16 +3,18 @@ vendor/
 node_modules/
 *.log
 composer.phar
-yarn.lock
-package-lock.json
 .vercel
 
+# Cache directory
+cache/
+
 # Local Configuration
-package.json
 .DS_Store
 
 # Environment
 .env
+.env*.local
+.php-version
 DOCKER_ENV
 docker_tag
 

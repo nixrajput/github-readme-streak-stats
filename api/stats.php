@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+require_once "whitelist.php";
+
 /**
  * Build a GraphQL query for a contribution graph
  *
@@ -106,7 +108,7 @@ function executeContributionGraphRequests(string $user, array $years): array
     }
     // close the handles
     foreach ($requests as $request) {
-        curl_multi_remove_handle($multi, $handle);
+        curl_multi_remove_handle($multi, $request);
     }
     curl_multi_close($multi);
     return $responses;
@@ -121,6 +123,10 @@ function executeContributionGraphRequests(string $user, array $years): array
  */
 function getContributionGraphs(string $user, ?int $startingYear = null): array
 {
+    if (!isWhitelisted($user)) {
+        throw new InvalidArgumentException("User not in whitelist.", 403);
+    }
+
     // get the list of years the user has contributed and the current year's contribution graph
     $currentYear = intval(date("Y"));
     $responses = executeContributionGraphRequests($user, [$currentYear]);
@@ -210,7 +216,7 @@ function removeGitHubToken(string $token): void
     if (empty($GLOBALS["ALL_TOKENS"])) {
         throw new AssertionError(
             "We are being rate-limited! Check <a href='https://git.io/streak-ratelimit' font-weight='bold'>git.io/streak-ratelimit</a> for details.",
-            429
+            429,
         );
     }
 }
@@ -287,7 +293,7 @@ function normalizeDays(array $days): array
             $dayOfWeek = substr(ucfirst(strtolower(trim($dayOfWeek))), 0, 3);
             // return day if valid, otherwise return null
             return in_array($dayOfWeek, ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]) ? $dayOfWeek : null;
-        }, $days)
+        }, $days),
     );
 }
 
