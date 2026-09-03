@@ -1,5 +1,5 @@
 # Use PHP 8.3 (8.4 not supported yet)
-FROM php:8.5-apache@sha256:0b69594dd09a95f41b262a4fc03acc03da5b1ceda01dd33876f5226e90e19750
+FROM php:8.5-apache@sha256:609de4eac65a03f20975441c9c3f313811d785575f0d02413c630753ab5c5532
 
 # Install system dependencies and PHP extensions in one layer
 RUN apt-get update && apt-get install -y --no-install-recommends \
