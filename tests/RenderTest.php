@@ -147,6 +147,19 @@ final class RenderTest extends TestCase
     }
 
     /**
+     * Test that card_width and card_height are capped, so a PNG render cannot be asked for a huge raster
+     */
+    public function testCardSizeIsBounded(): void
+    {
+        $this->testParams["card_width"] = "99999999999";
+        $this->testParams["card_height"] = "99999999999";
+        $render = generateOutput($this->testStats, $this->testParams)["body"];
+        $this->assertStringContainsString("viewBox='0 0 2000 1000' width='2000px' height='1000px'", $render);
+        $render = generateErrorCard("error", $this->testParams);
+        $this->assertStringContainsString("viewBox='0 0 2000 1000' width='2000px' height='1000px'", $render);
+    }
+
+    /**
      * Test split lines function
      */
     public function testSplitLines(): void
