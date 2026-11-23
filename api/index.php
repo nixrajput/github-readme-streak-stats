@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+// The Vercel runtime prints uncaught errors with their stack traces to the client. Keep them in the log only.
+ini_set("display_errors", "0");
+
 // load functions
 require_once dirname(__DIR__, 1) . "/vendor/autoload.php";
 require_once "stats.php";
