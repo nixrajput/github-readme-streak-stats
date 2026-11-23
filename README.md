@@ -167,7 +167,7 @@ The current streak is the number of consecutive days ending with the current day
 
 ## 🛠 Local development
 
-Requires PHP 8.2+ and Composer.
+Requires PHP 8.5+ and Composer.
 
 ```bash
 composer install

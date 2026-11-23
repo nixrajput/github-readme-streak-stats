@@ -8,9 +8,11 @@ use PHPUnit\Framework\TestCase;
 require_once dirname(__DIR__, 1) . "/vendor/autoload.php";
 require_once "api/stats.php";
 
-// load .env
-$dotenv = \Dotenv\Dotenv::createImmutable(dirname(__DIR__, 1));
-$dotenv->safeLoad();
+// load .env if present (CI passes TOKEN in the environment instead). PHPUnit 13 reports the warning that
+// safeLoad() suppresses for a missing file, because this runs outside a test.
+if (file_exists(dirname(__DIR__, 1) . "/.env")) {
+    \Dotenv\Dotenv::createImmutable(dirname(__DIR__, 1))->load();
+}
 
 // if environment variables are not loaded, display error
 if (!isset($_ENV["TOKEN"])) {
