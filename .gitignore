@@ -13,10 +13,20 @@ cache/
 
 # Environment
 .env
-.env*.local
+.env.*
+!.env.example
 .php-version
 DOCKER_ENV
 docker_tag
+
+# Keys and local databases
+*.pem
+*.key
+*.p12
+*.pfx
+*.sqlite
+*.sqlite3
+*.db
 
 # IDE
 .vscode/
