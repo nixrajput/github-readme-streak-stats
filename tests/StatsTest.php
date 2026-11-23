@@ -436,6 +436,19 @@ final class StatsTest extends TestCase
     }
 
     /**
+     * Test that the requested years stay between 2005 and the current year
+     */
+    public function testYearsToRequest(): void
+    {
+        $this->assertEquals([2019, 2020], getYearsToRequest(2019, 2021));
+        $this->assertEquals([2005, 2006], getYearsToRequest(1990, 2007));
+        // a far-future starting_year must not fan out into one API request per year
+        $years = getYearsToRequest(100000, 2026);
+        $this->assertLessThanOrEqual(2, count($years));
+        $this->assertLessThanOrEqual(2026, max($years));
+    }
+
+    /**
      * Test stats with excluded days of the week
      */
     public function testExcludeDays(): void

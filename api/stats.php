@@ -140,11 +140,7 @@ function getContributionGraphs(string $user, ?int $startingYear = null): array
     $userCreatedYear = intval(explode("-", $userCreatedDateTimeString)[0]);
     // if override parameter is null then define starting year
     // as the user created year; else use the provided override year
-    $minimumYear = $startingYear ?: $userCreatedYear;
-    // make sure the minimum year is not before 2005 (the year Git was created)
-    $minimumYear = max($minimumYear, 2005);
-    // create an array of years from the user's created year to one year before the current year
-    $yearsToRequest = range($minimumYear, $currentYear - 1);
+    $yearsToRequest = getYearsToRequest($startingYear ?: $userCreatedYear, $currentYear);
     // also check the first contribution year if the year is before 2005 (the year Git was created)
     // since the user may have backdated some commits to a specific year such as 1970 (see #448)
     $contributionYears = $responses[$currentYear]->data->user->contributionsCollection->contributionYears ?? [];
@@ -155,6 +151,21 @@ function getContributionGraphs(string $user, ?int $startingYear = null): array
     // get the contribution graphs for the previous years
     $responses += executeContributionGraphRequests($user, $yearsToRequest);
     return $responses;
+}
+
+/**
+ * Get the years from a minimum year to one year before the current year
+ *
+ * @param int $minimumYear First year to request, from the user's created year or the starting_year parameter
+ * @param int $currentYear The current year
+ * @return array<int> Years to request
+ */
+function getYearsToRequest(int $minimumYear, int $currentYear): array
+{
+    // not before 2005 (the year Git was created), and not after the current year: starting_year comes
+    // from the request, and a far-future year would send one GitHub API request for every year up to it
+    $minimumYear = min(max($minimumYear, 2005), $currentYear);
+    return range($minimumYear, $currentYear - 1);
 }
 
 /**
