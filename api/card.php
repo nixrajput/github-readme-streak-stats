@@ -3,6 +3,19 @@
 declare(strict_types=1);
 
 /**
+ * Escape text for an SVG text node or attribute value
+ *
+ * ENT_DISALLOWED replaces code points that XML 1.0 forbids, which would otherwise break the whole card.
+ *
+ * @param string $text Text to escape
+ * @return string Escaped text
+ */
+function escapeXml(string $text): string
+{
+    return htmlspecialchars($text, ENT_QUOTES | ENT_SUBSTITUTE | ENT_DISALLOWED | ENT_XML1, "UTF-8");
+}
+
+/**
  * Convert date from Y-M-D to more human-readable format
  *
  * @param string $dateString String in Y-M-D format
@@ -50,7 +63,7 @@ function formatDate(string $dateString, string|null $format, string $locale): st
         }
     }
     // sanitize and return formatted date
-    return htmlspecialchars($formatted);
+    return escapeXml($formatted);
 }
 
 /**
@@ -246,7 +259,7 @@ function splitLines(string $text, int $maxChars, int $line1Offset): string
             $text = utf8WordWrap($text, $maxChars, "\n", true);
         }
     }
-    $text = htmlspecialchars($text);
+    $text = escapeXml($text);
     return preg_replace(
         "/^(.*)\n(.*)/",
         "<tspan x='0' dy='{$line1Offset}'>$1</tspan><tspan x='0' dy='16'>$2</tspan>",
@@ -375,7 +388,7 @@ function generateCard(array $stats, ?array $params = null): string
     $theme = getRequestedTheme($params);
 
     // get requested locale, default to English
-    $localeCode = $params["locale"] ?? "en";
+    $localeCode = normalizeLocaleCode($params["locale"] ?? "en");
     $localeTranslations = getTranslations($localeCode);
 
     // whether the locale is right-to-left
@@ -386,7 +399,7 @@ function generateCard(array $stats, ?array $params = null): string
     $dateFormat = $params["date_format"] ?? ($localeTranslations["date_format"] ?? null);
 
     // read border_radius parameter, default to 4.5 if not set
-    $borderRadius = $params["border_radius"] ?? 4.5;
+    $borderRadius = floatval($params["border_radius"] ?? 4.5);
 
     $showTotalContributions = ($params["hide_total_contributions"] ?? "") !== "true";
     $showCurrentStreak = ($params["hide_current_streak"] ?? "") !== "true";
@@ -483,7 +496,7 @@ function generateCard(array $stats, ?array $params = null): string
     $excludedDays = "";
     if (!empty($stats["excludedDays"])) {
         $offset = $direction === "rtl" ? $cardWidth - 5 : 5;
-        $excludingDaysText = getExcludingDaysText($stats["excludedDays"], $localeTranslations, $localeCode);
+        $excludingDaysText = escapeXml(getExcludingDaysText($stats["excludedDays"], $localeTranslations, $localeCode));
         $excludedDays = "<g style='isolation: isolate'>
                 <!-- Excluded Days -->
                 <g transform='translate({$offset},187)'>
@@ -618,12 +631,13 @@ function generateCard(array $stats, ?array $params = null): string
 function generateErrorCard(string $message, ?array $params = null): string
 {
     $params = $params ?? $_REQUEST;
+    $message = escapeXml($message);
 
     // get requested theme, use $_REQUEST if no params array specified
     $theme = getRequestedTheme($params);
 
     // read border_radius parameter, default to 4.5 if not set
-    $borderRadius = $params["border_radius"] ?? 4.5;
+    $borderRadius = floatval($params["border_radius"] ?? 4.5);
 
     // read card_width parameter
     $cardWidth = getCardWidth($params);
@@ -880,6 +894,8 @@ function renderOutput(string|array $output, int $responseCode = 200): void
     if ($responseCode >= 400) {
         header("Cache-Control: public, max-age=300");
     }
+    // A card opened directly is an SVG document, so block scripts even if an escape is ever missed.
+    header("Content-Security-Policy: default-src 'none'; style-src 'unsafe-inline'");
     header("Content-Type: {$response["contentType"]}");
     exit($response["body"]);
 }
