@@ -19,20 +19,22 @@ on:
       - ".github/workflows/translation-progress.yml"
 
 permissions:
-  contents: write
-  pull-requests: write
+  contents: read
 
 env:
-  PHP_VERSION: 8.2
+  PHP_VERSION: 8.5
 
 jobs:
   translation-progress:
     name: translation progress
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
-      - uses: php-actions/composer@v6
+      - uses: php-actions/composer@8a65f0d3c6a1d17ca4800491a40b5756a4c164f3 # v6.1.2
         with:
           php_extensions: intl
           php_version: ${{ env.PHP_VERSION }}
@@ -41,7 +43,7 @@ jobs:
         run: php scripts/translation-progress.php
 
       - name: Raise a PR if the table changed
-        uses: peter-evans/create-pull-request@v8
+        uses: peter-evans/create-pull-request@3ffccacd46053766916f087ce41d627c0b8cf2d1 # v8.1.3
         with:
           commit-message: "docs(readme): update translation progress"
           title: "docs(readme): update translation progress"

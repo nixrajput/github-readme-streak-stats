@@ -8,9 +8,11 @@ use PHPUnit\Framework\TestCase;
 require_once dirname(__DIR__, 1) . "/vendor/autoload.php";
 require_once "api/stats.php";
 
-// load .env
-$dotenv = \Dotenv\Dotenv::createImmutable(dirname(__DIR__, 1));
-$dotenv->safeLoad();
+// load .env if present (CI passes TOKEN in the environment instead). PHPUnit 13 reports the warning that
+// safeLoad() suppresses for a missing file, because this runs outside a test.
+if (file_exists(dirname(__DIR__, 1) . "/.env")) {
+    \Dotenv\Dotenv::createImmutable(dirname(__DIR__, 1))->load();
+}
 
 // if environment variables are not loaded, display error
 if (!isset($_ENV["TOKEN"])) {
@@ -433,6 +435,19 @@ final class StatsTest extends TestCase
             ],
         ];
         $this->assertEquals($expected, $stats);
+    }
+
+    /**
+     * Test that the requested years stay between 2005 and the current year
+     */
+    public function testYearsToRequest(): void
+    {
+        $this->assertEquals([2019, 2020], getYearsToRequest(2019, 2021));
+        $this->assertEquals([2005, 2006], getYearsToRequest(1990, 2007));
+        // a far-future starting_year must not fan out into one API request per year
+        $years = getYearsToRequest(100000, 2026);
+        $this->assertLessThanOrEqual(2, count($years));
+        $this->assertLessThanOrEqual(2026, max($years));
     }
 
     /**

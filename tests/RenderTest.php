@@ -117,6 +117,49 @@ final class RenderTest extends TestCase
     }
 
     /**
+     * Test that request parameters cannot inject markup into the SVG
+     */
+    public function testParametersCannotInjectMarkup(): void
+    {
+        $this->testParams["border_radius"] = "4'/><script>alert(1)</script><rect x='";
+        $this->testParams["date_format"] = "\x01<\\s\\c\\r\\i\\p\\t>";
+        $cards = [
+            generateCard($this->testStats, $this->testParams),
+            generateErrorCard("<script>alert(2)</script>", $this->testParams),
+        ];
+        foreach ($cards as $render) {
+            $this->assertStringNotContainsString("<script>", $render);
+            $this->assertStringContainsString("rx='4'", $render);
+            // the whole card must still be well-formed XML
+            $this->assertNotFalse(simplexml_load_string(convertHexColors($render)));
+        }
+        $this->assertStringContainsString("&lt;script&gt;alert(2)&lt;/script&gt;", $cards[1]);
+    }
+
+    /**
+     * Test that a locale too long for ICU falls back to English instead of throwing
+     */
+    public function testOverlongLocaleFallsBackToEnglish(): void
+    {
+        $this->testParams["locale"] = str_repeat("a", 200);
+        $render = generateCard($this->testStats, $this->testParams);
+        $this->assertStringContainsString("Total Contributions", $render);
+    }
+
+    /**
+     * Test that card_width and card_height are capped, so a PNG render cannot be asked for a huge raster
+     */
+    public function testCardSizeIsBounded(): void
+    {
+        $this->testParams["card_width"] = "99999999999";
+        $this->testParams["card_height"] = "99999999999";
+        $render = generateOutput($this->testStats, $this->testParams)["body"];
+        $this->assertStringContainsString("viewBox='0 0 2000 1000' width='2000px' height='1000px'", $render);
+        $render = generateErrorCard("error", $this->testParams);
+        $this->assertStringContainsString("viewBox='0 0 2000 1000' width='2000px' height='1000px'", $render);
+    }
+
+    /**
      * Test split lines function
      */
     public function testSplitLines(): void

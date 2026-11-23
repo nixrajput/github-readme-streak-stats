@@ -1,5 +1,5 @@
-# Use PHP 8.3 (8.4 not supported yet)
-FROM php:8.5-apache@sha256:0b69594dd09a95f41b262a4fc03acc03da5b1ceda01dd33876f5226e90e19750
+# PHP 8.5, the version the Vercel runtime (vercel-php@0.9.0) runs
+FROM php:8.5.13-apache@sha256:0a785eab8b7eb4836f9c6093771c8ea15ff8ba7269444f3da70a1d33d15fe664
 
 # Install system dependencies and PHP extensions in one layer
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -15,17 +15,17 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Composer
-COPY --from=composer/composer:latest-bin@sha256:c9bda63056674836406cacfbbdd8ef770fb4692ac419c967034225213c64e11b /composer /usr/bin/composer
+COPY --from=composer/composer:2.11.2-bin@sha256:4eaf89f62eb9504807f2828f1829a71b7fcd202e89abe2f41c1fb2136068fbfb /composer /usr/bin/composer
 
 # Set working directory
 WORKDIR /var/www/html
 
 # Copy composer files and install dependencies
 COPY composer.json composer.lock ./
-COPY src/ ./src/
+COPY api/ ./api/
 RUN composer install --no-dev --optimize-autoloader --no-scripts
 
-# Configure Apache to serve from src/ directory and pass environment variables
+# Configure Apache to serve from api/ directory and pass environment variables
 RUN a2enmod rewrite headers && \
     echo 'ServerTokens Prod\n\
     ServerSignature Off\n\
@@ -33,8 +33,8 @@ RUN a2enmod rewrite headers && \
     PassEnv WHITELIST\n\
     <VirtualHost *:80>\n\
     ServerAdmin webmaster@localhost\n\
-    DocumentRoot /var/www/html/src\n\
-    <Directory /var/www/html/src>\n\
+    DocumentRoot /var/www/html/api\n\
+    <Directory /var/www/html/api>\n\
     Options -Indexes\n\
     AllowOverride None\n\
     Require all granted\n\
