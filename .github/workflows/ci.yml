@@ -13,9 +13,6 @@ concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
 
-env:
-  PHP_VERSION: 8.5
-
 jobs:
   build:
     name: build
@@ -24,17 +21,20 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+      - name: Read the PHP version
+        id: php
+        run: echo "version=$(cat .php-version)" >> "$GITHUB_OUTPUT"
       # php-actions/* are kept from the upstream pipeline: they are the setup this
       # test suite is known to pass under, and the intl extension is required.
       - uses: php-actions/composer@8a65f0d3c6a1d17ca4800491a40b5756a4c164f3 # v6.1.2
         with:
           php_extensions: intl
-          php_version: ${{ env.PHP_VERSION }}
+          php_version: ${{ steps.php.outputs.version }}
       - name: PHPUnit
         uses: php-actions/phpunit@1789d1964b1bfda259b1cb42a72b65299c2cae35 # v4
         with:
           php_extensions: intl
-          php_version: ${{ env.PHP_VERSION }}
+          php_version: ${{ steps.php.outputs.version }}
           bootstrap: vendor/autoload.php
           configuration: tests/phpunit/phpunit.xml
           args: --testdox

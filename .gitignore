@@ -15,7 +15,6 @@ cache/
 .env
 .env.*
 !.env.example
-.php-version
 DOCKER_ENV
 docker_tag
 
