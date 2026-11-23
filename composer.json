@@ -30,10 +30,10 @@
   "require": {
     "php": "^8.2",
     "ext-intl": "*",
-    "vlucas/phpdotenv": "^5.3"
+    "vlucas/phpdotenv": "5.8.1"
   },
   "require-dev": {
-    "phpunit/phpunit": "^11"
+    "phpunit/phpunit": "11.5.58"
   },
   "scripts": {
     "start": [
