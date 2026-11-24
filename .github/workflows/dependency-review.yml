@@ -1,8 +1,8 @@
 name: Dependency Review
 
 # Fails a PR that introduces a dependency with a known vulnerability or a
-# disallowed licence. Complements Dependabot, which raises the upgrade PRs;
-# this blocks a bad one from landing in the first place.
+# disallowed licence. Dependabot update PRs are off and only alerts run, so
+# this is the gate that stops a bad dependency from landing.
 on:
   pull_request:
     branches: ["main"]
